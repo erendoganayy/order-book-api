@@ -3,7 +3,6 @@ package com.project.orderbooks.orderbookapi.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,9 +20,7 @@ public class Customer {
     @Id
     @GeneratedValue
     private long customer_id;
-
     private String customer_name;
-
     private String customer_email;
 
     @OneToMany(mappedBy = "customer")
