@@ -3,11 +3,9 @@ package com.project.orderbooks.orderbookapi.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -16,12 +14,21 @@ import javax.persistence.ManyToOne;
 public class Order {
 
     @Id
-    @GeneratedValue
-    private long order_id;
-
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    private long orderId;
+    private long customerId;
+    private double totalPrice;
+    private String orderDate;
+    @ManyToOne
+    private Customer customer;
     @ManyToOne
     private Book book;
 
-    @ManyToOne
-    private Customer customer;
+
+
+
+
+
+
 }

@@ -1,13 +1,12 @@
 package com.project.orderbooks.orderbookapi.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,12 +17,17 @@ import java.util.List;
 public class Book {
 
     @Id
-    @GeneratedValue
-    private long book_id;
-
-    private String book_name;
-    private int book_price;
-
+    @GeneratedValue(strategy =GenerationType.AUTO,generator = "native")
+    @GenericGenerator(name="native",strategy = "native")
+    private long bookId;
+    private String bookName;
+    private int bookPrice;
+    private int stock;
     @OneToMany(mappedBy = "book")
-    private List<Order> orderList=new ArrayList<>();
+    @JsonIgnore
+    public List<Order> orderList=new ArrayList<>();
+
+
+
+
 }
